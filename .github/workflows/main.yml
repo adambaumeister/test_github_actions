@@ -1,6 +1,8 @@
 on:
   issues:
     types: [opened, edited, milestoned]
+permissions:
+  contents: write
 
 jobs:
   show_issue_data:
@@ -8,6 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Show issue data
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: create a new file wowee
         run: | 
-          echo ${{ toJson(github.event.issue) }}
+          cat "${{ toJson(github.event.issue) }}" > '${{ github.event.issue.number }}_issue.json'
+      - name: Create a branch and push
+        run: |
+          git config --global user.name 'Automatic PR Generator'
+          git config --global user.email 'automated-pr-generator@users.noreply.github.com'
+          git checkout -b '${{ github.event.issue.number }}-issue'
+          git add '${{ github.event.issue.number }}_issue.json'
+          git commit -m "Added issue automatically"
+          git push
+          
