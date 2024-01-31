@@ -1,0 +1,13 @@
+on:
+  issues:
+    types: [opened, edited, milestoned]
+
+jobs:
+  show_issue_data:
+    name: Display the issue data
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Show issue data
+        run: | 
+          echo ${{ github.event.issues }}
