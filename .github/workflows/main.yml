@@ -22,5 +22,5 @@ jobs:
           git checkout -b '${{ github.event.issue.number }}-issue'
           git add '${{ github.event.issue.number }}_issue.json'
           git commit -m "Added issue automatically"
-          git push -u origin
+          git push -u origin '${{ github.event.issue.number }}-issue'
           
