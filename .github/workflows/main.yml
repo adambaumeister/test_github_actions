@@ -10,4 +10,4 @@ jobs:
     steps:
       - name: Show issue data
         run: | 
-          echo ${{ github.event.issues }}
+          echo ${{ github.event }}
