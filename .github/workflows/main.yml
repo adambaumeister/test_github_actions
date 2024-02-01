@@ -23,4 +23,8 @@ jobs:
           git add '${{ github.event.issue.number }}_issue.json'
           git commit -m "Added issue automatically"
           git push -u origin '${{ github.event.issue.number }}-issue'
-          
+      - name: Create PR
+        run: gh pr create -B '${{ github.event.issue.number }}-issue' -H main --title 'New Content from Issue ${{ github.event.issue.number }}' --body 'Created by Github actions.'
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
