@@ -1,0 +1,13 @@
+{
+xql: xql commands,
+sources: [
+Amazon S3,
+Microsoft SQL Server
+],
+category: [
+Compromise,
+Attack
+],
+name: New rule,
+description: Extensive description here
+}
