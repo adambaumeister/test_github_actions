@@ -17,11 +17,11 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: 3.11
-      - name: Try to parse event as JSON string (in python)
-        run: python -c "import json; import sys; d = json.loads(sys.stdin); print(json.dumps(d, indent=4))" < '${{ toJson(github.event.issue) }}'
+
       - name: create a new file wowee
         run: | 
           echo "${{ github.event.issue.body }}" > '${{ github.event.issue.number }}_issue.json'
+          
       - name: Create a branch and push
         run: |
           git config --global user.name 'Automatic PR Generator'
